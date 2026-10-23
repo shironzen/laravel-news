@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
+    //берет стаьти и сортирует по дате + по 5 на странице
     public function index()
     {
         $texts = Text::orderBy('created_at', 'desc')->paginate(5);
@@ -23,6 +24,7 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
+        //проверка что все заполнено + создание записи "текст"
         $request->validate([
             'heading' => 'required|string|max:255',
             'text' => 'required|string',
@@ -35,7 +37,7 @@ class ArticleController extends Controller
             'category_id' => $request->category_id,
             'user_id' => Auth::id(),
         ]);
-
+//редирект на главну
         return redirect('/')->with('success', 'Статья успешно опубликована!');
     }
 
@@ -45,9 +47,11 @@ class ArticleController extends Controller
         return view('categories', compact('categories'));
     }
 
+    //ищет по айди если нет 404
     public function categoryShow($id)
     {
         $category = Category::findOrFail($id);
+        //берет статьи тока с переданным айди (чтобы выводить нужную категорию)
         $texts = Text::where('category_id', $id)->orderBy('created_at', 'desc')->paginate(5);
         
         return view('category', compact('texts', 'category'));

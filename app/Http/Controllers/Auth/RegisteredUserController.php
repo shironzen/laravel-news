@@ -22,17 +22,18 @@ class RegisteredUserController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        //валидация логин уникалка 
         $request->validate([
             'login' => ['required', 'string', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        //создание юзера с хешпаролеи
         $user = User::create([
             'login' => $request->login,
             'password' => Hash::make($request->password),
             'role_id' => 1,
         ]);
-
+//вход и редирект на дешборд
         event(new Registered($user));
         Auth::login($user);
 

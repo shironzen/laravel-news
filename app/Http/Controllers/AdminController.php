@@ -9,19 +9,19 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    // Показать страницу админа
+    // показать админку
     public function index()
     {
-        // Берем все статьи (от новых к старым)
+        // все сттатьи
         $texts = Text::orderBy('created_at', 'desc')->get();
-        // Берем всех пользователей и все роли (для формы смены ролей)
+        // берем всех пользователей и все роли
         $users = User::all();
         $roles = Role::all();
 
         return view('admin', compact('texts', 'users', 'roles'));
     }
 
-    // Удалить статью
+    // удалить статью
     public function destroy(Text $text)
     {
         $text->delete();
