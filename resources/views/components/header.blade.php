@@ -12,7 +12,7 @@
         <h1 class="logo">Научный прогресс</h1>
         <nav class="main-nav">
             <a href="{{ url('/') }}">Главная</a>
-            <a href="{{ url('/category') }}">Категория</a>
+            <a href="{{ route('categories') }}">Категории</a>
             <a href="{{ url('/journalist') }}">Журналист</a>
             <a href="{{ url('/admin') }}">Админ</a>
         </nav>

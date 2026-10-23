@@ -1,21 +1,26 @@
 <x-header />
 
-<h1>Категория: IT</h1>
+<h1>Категория: {{ $category->name }}</h1>
 
 <div class="news-list">
-
-    <article class="news-card">
-        <h2>Прорыв в квантовых вычислениях</h2>
-        <p class="news-meta">25 сентября 2025</p>
-        <p>Учёные добились стабильной работы кубитов при комнатной температуре.</p>
-    </article>
-
-    <article class="news-card">
-        <h2>Google представил новый язык программирования</h2>
-        <p class="news-meta">22 сентября 2025</p>
-        <p>Обещает простоту Python и скорость C++.</p>
-    </article>
-
+    @forelse ($texts as $text)
+        <article class="news-card">
+            <h2>{{ $text->heading }}</h2>
+            <p class="news-meta">
+                {{ $text->created_at->format('d.m.Y') }} — 
+                Автор: {{ $text->user->login }}
+            </p>
+            <p>{{ $text->text }}</p>
+        </article>
+    @empty
+        <p>В этой категории пока нет статей.</p>
+    @endforelse
 </div>
+
+<div style="margin-top: 20px;">
+    {{ $texts->links() }}
+</div>
+
+<a href="{{ route('categories') }}" style="display: inline-block; margin-bottom: 20px; color: #3498db; text-decoration: none;">&larr; Назад ко всем категориям</a>
 
 <x-footer />

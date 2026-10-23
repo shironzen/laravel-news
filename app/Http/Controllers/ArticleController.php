@@ -38,4 +38,18 @@ class ArticleController extends Controller
 
         return redirect('/')->with('success', 'Статья успешно опубликована!');
     }
+
+    public function categoriesList()
+    {
+        $categories = Category::all();
+        return view('categories', compact('categories'));
+    }
+
+    public function categoryShow($id)
+    {
+        $category = Category::findOrFail($id);
+        $texts = Text::where('category_id', $id)->orderBy('created_at', 'desc')->paginate(5);
+        
+        return view('category', compact('texts', 'category'));
+    }
 }

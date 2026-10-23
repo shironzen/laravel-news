@@ -6,8 +6,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ArticleController::class, 'index'])->name('home');
-Route::get('/category', function () { return view('category'); })->name('category');
+Route::get('/categories', [ArticleController::class, 'categoriesList'])->name('categories');
 
+Route::get('/category/{id}', [ArticleController::class, 'categoryShow'])->name('category.show');
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
