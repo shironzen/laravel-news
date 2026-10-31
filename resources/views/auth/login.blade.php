@@ -1,32 +1,35 @@
-<x-guest-layout>
+@include('components.header')
+
+<div class="container" style="max-width: 500px; margin-top: 50px;">
+    <h1 style="text-align: center; margin-bottom: 20px;">Вход</h1>
+
     @if ($errors->any())
-        <div style="background: red; color: white; padding: 10px; margin-bottom: 20px;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+        <div style="background: #e74c3c; color: white; padding: 10px; margin-bottom: 20px; border-radius: 4px;">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
         </div>
     @endif
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="/login" style="background: white; padding: 20px; border-radius: 6px;">
         @csrf
-        <div>
-            <x-input-label for="login" :value="__('Логин')" />
-            <x-text-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')" required autofocus />
-            <x-input-error :messages="$errors->get('login')" class="mt-2" />
+        
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="login">Логин</label>
+            <input type="text" id="login" name="login" value="{{ old('login') }}" required style="width: 100%; padding: 8px;">
         </div>
 
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Пароль')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" required style="width: 100%; padding: 8px;">
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button class="ms-3">
-                {{ __('Войти') }}
-            </x-primary-button>
-        </div>
+        <button type="submit" class="btn" style="width: 100%;">Войти</button>
+        
+        <p style="text-align: center; margin-top: 15px;">
+            Нет аккаунта? <a href="{{ route('register') }}" style="color: #3498db;">Зарегистрироваться</a>
+        </p>
     </form>
-</x-guest-layout>
+</div>
+
+@include('components.footer')

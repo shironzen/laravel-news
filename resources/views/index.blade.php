@@ -1,4 +1,4 @@
-<x-header />
+@include('components.header')
 
 <h1>Все новости</h1>
 
@@ -28,4 +28,4 @@
     {{ $texts->links() }}
 </div>
 
-<x-footer />
+@include('components.footer')

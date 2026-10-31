@@ -1,4 +1,4 @@
-<x-header />
+@include('components.header')
 
 <h1>Все категории</h1>
 
@@ -13,4 +13,4 @@
     @endforeach
 </div>
 
-<x-footer />
+@include('components.footer')

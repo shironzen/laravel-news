@@ -47,7 +47,7 @@ class ArticleController extends Controller
         return view('categories', compact('categories'));
     }
 
-    //ищет по айди если нет 404
+    //ищет по айди если нет 404 (дДЛЯ КАТЕГОРИИ)
     public function categoryShow($id)
     {
         $category = Category::findOrFail($id);

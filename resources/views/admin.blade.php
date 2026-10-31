@@ -1,4 +1,4 @@
-<x-header />
+@include('components.header')
 
 <h1>Панель администратора</h1>
 
@@ -70,4 +70,4 @@
     </table>
 </section>
 
-<x-footer />
+@include('components.footer')

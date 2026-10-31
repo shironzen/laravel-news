@@ -1,4 +1,4 @@
-<x-header />
+@include('components.header')
 
 <h1>Категория: {{ $category->name }}</h1>
 
@@ -23,4 +23,4 @@
 
 <a href="{{ route('categories') }}" style="display: inline-block; margin-bottom: 20px; color: #3498db; text-decoration: none;">&larr; Назад ко всем категориям</a>
 
-<x-footer />
+@include('components.footer')

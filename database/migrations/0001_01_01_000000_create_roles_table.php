@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        //ууникал айди и название роли 
+        //ууникал айди и название роли , хранит роли
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique(); // <--- ВОТ ЭТА СТРОКА ДОЛЖНА БЫТЬ
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }

@@ -16,6 +16,19 @@
             <a href="{{ url('/journalist') }}">Журналист</a>
             <a href="{{ url('/admin') }}">Админ</a>
         </nav>
+        
+@if(Auth::check())
+   
+    <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+        @csrf
+        <button type="submit" style="background: none; border: none; color: white; cursor: pointer; margin-left: 15px;">
+            Выйти ({{ Auth::user()->login }})
+        </button>
+    </form>
+@else
+    <a href="{{ route('login') }}" style="margin-left: 15px;">Вход</a>
+    <a href="{{ route('register') }}" style="margin-left: 10px;">Регистрация</a>
+@endif
     </div>
 </header>
 

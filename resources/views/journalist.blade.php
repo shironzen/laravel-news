@@ -1,4 +1,4 @@
-<x-header />
+@include('components.header')
 
 <h1>Панель журналиста</h1>
 
@@ -39,4 +39,4 @@
 
 </form>
 
-<x-footer />
+@include('components.footer')
